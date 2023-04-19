@@ -72,7 +72,7 @@ class SeatsView : View {
     }
 
     private fun drawSeat(canvas: Canvas?, seat: Seat) {
-        //Mengatur Warna ketika sudah Dibooking
+        // Mengatur Warna ketika Sudah Dibooking
         if (seat.isBooked) {
             backgroundPaint.color = ResourcesCompat.getColor(resources, R.color.grey_200, null)
             armrestPaint.color = ResourcesCompat.getColor(resources, R.color.grey_200, null)
@@ -85,10 +85,10 @@ class SeatsView : View {
             numberSeatPaint.color = ResourcesCompat.getColor(resources, R.color.grey_200, null)
         }
 
-        //Menyimpan State
+        // Menyimpan State
         canvas?.save()
 
-        //Background
+        // Background
         canvas?.translate(seat.x as Float, seat.y as Float)
 
         val backgroundPath = Path()
@@ -96,29 +96,29 @@ class SeatsView : View {
         backgroundPath.addCircle(100F, 50F, 75F, Path.Direction.CCW)
         canvas?.drawPath(backgroundPath, backgroundPaint)
 
-        //Sandaran Tangan
+        // Sandaran Tangan
         val armrestPath = Path()
         armrestPath.addRect(0F, 0F, 50F, 200F, Path.Direction.CCW)
         canvas?.drawPath(armrestPath, armrestPaint)
         canvas?.translate(150F, 0F)
         armrestPath.addRect(0F, 0F, 50F, 200F, Path.Direction.CCW)
-        canvas?.drawPath(armrestPath,armrestPaint)
+        canvas?.drawPath(armrestPath, armrestPaint)
 
-        //Bagian Bawah Kursi
+        // Bagian Bawah Kursi
         canvas?.translate(-150F, 175F)
         val bottomSeatPath = Path()
         bottomSeatPath.addRect(0F, 0F, 200F, 25F, Path.Direction.CCW)
         canvas?.drawPath(bottomSeatPath, bottomSeatPaint)
 
-        //Menulis Nomor Kursi
+        // Menulis Nomor Kursi
         canvas?.translate(0F, -175F)
         numberSeatPaint.apply {
-            textSize = 500F
+            textSize = 50F
             numberSeatPaint.getTextBounds(seat.name, 0, seat.name.length, mBounds)
         }
         canvas?.drawText(seat.name, 100F - mBounds.centerX(), 100F, numberSeatPaint)
 
-        //mengembalikan ke pengaturan sebelumnya
+        // Mengembalikan ke pengaturan sebelumnya
         canvas?.restore()
     }
 }
